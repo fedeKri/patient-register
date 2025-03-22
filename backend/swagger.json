@@ -1,0 +1,15 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Pacientes",
+        "description": "Documentación de la API para registrar y listar pacientes.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8001",
+            "description": "Servidor local"
+        }
+    ],
+    "tags": []
+}

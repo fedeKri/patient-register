@@ -1,0 +1,131 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Pacientes",
+        "description": "Documentación de la API para registrar y listar pacientes.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8001",
+            "description": "Servidor local"
+        }
+    ],
+    "paths": {
+        "/api/patients": {
+            "get": {
+                "tags": [
+                    "Pacientes"
+                ],
+                "summary": "Obtener todos los pacientes",
+                "description": "Devuelve un array con todos los pacientes registrados",
+                "operationId": "4a397b69598fdd620ee7120b8610185b",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Pacientes"
+                ],
+                "summary": "Crear un paciente",
+                "description": "Crea un nuevo paciente y envía un correo de confirmación",
+                "operationId": "d81c0f99b503153ba6d47c7899a882a4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "full_name",
+                                    "email",
+                                    "phone_country_code",
+                                    "phone_number",
+                                    "document_photo"
+                                ],
+                                "properties": {
+                                    "full_name": {
+                                        "type": "string",
+                                        "example": "Juan Perez"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "juan@gmail.com"
+                                    },
+                                    "phone_country_code": {
+                                        "type": "string",
+                                        "example": "+598"
+                                    },
+                                    "phone_number": {
+                                        "type": "string",
+                                        "example": "12345678"
+                                    },
+                                    "document_photo": {
+                                        "description": "Archivo JPG",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Paciente registrado exitosamente"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/patients/paginated": {
+            "get": {
+                "tags": [
+                    "Pacientes"
+                ],
+                "summary": "Obtener pacientes paginados",
+                "description": "Devuelve una lista de pacientes ordenada y paginada. Se aceptan parámetros de página y per_page.",
+                "operationId": "f02b03564d0d511c6e85c0c720a87720",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Número de página (por defecto 1)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Cantidad de pacientes por página (por defecto 10)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de pacientes paginados"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Pacientes",
+            "description": "Endpoints para la gestión de pacientes"
+        }
+    ]
+}
