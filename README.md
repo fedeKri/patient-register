@@ -1,58 +1,62 @@
-# patient-register
-Patient Registration
-Proyecto compuesto por:
+# Patient Registration
 
-Backend (Laravel) en ./backend
+Project composed of:
 
-Frontend (React) en ./frontend
+- **Backend** (Laravel) at `./backend`
+- **Frontend** (React) at `./frontend`
+- **Database** (PostgreSQL)
 
-Base de datos (PostgreSQL)
+Orchestrated with **Docker Compose** for rapid development setup.
 
-Orquestado con Docker Compose para un entorno de desarrollo rápido.
+## Requirements
 
-Requisitos
-Docker
+- Docker
+- Docker Compose
+- Available ports: `5432` (PostgreSQL), `8000` (Laravel), `5173` (React)
 
-Docker Compose
+## Getting Started
 
-Puertos libres: 5432 (PostgreSQL), 8000 (Laravel), 5173 (React)
+**Clone this repository:**
 
-Cómo levantar el entorno
-Clona este repositorio:
-
-bash
-Copy
-git clone <URL_DEL_REPOSITORIO>
+```bash
+git clone <REPOSITORY_URL>
 cd patient-registration
-Inicia los contenedores:
+```
 
-bash
-Copy
+**Start the containers:**
+
+```bash
 docker-compose up --build
-Se construirán las imágenes para el backend y el frontend.
+```
 
-Se iniciará la base de datos PostgreSQL.
+- Images for backend and frontend will be built.
+- PostgreSQL database will be started.
 
-Accede a la aplicación:
+## Access the Application
 
-Backend (Laravel): http://localhost:8000
+- **Backend (Laravel):** [http://localhost:8000](http://localhost:8000)
+- **Frontend (React):** [http://localhost:5173](http://localhost:5173)
 
-Frontend (React): http://localhost:5173
+## Notes
 
-Notas
-La base de datos se encuentra en el contenedor db, con las credenciales definidas en el docker-compose.yml.
+- The database is located in the `db` container, with credentials defined in `docker-compose.yml`.
 
-Si necesitas reejecutar migraciones o seeds, entra al contenedor Laravel:
+- To rerun migrations or seeds, enter the Laravel container:
 
-bash
-Copy
+```bash
 docker exec -it laravel_app bash
 php artisan migrate --seed
-Si no ves las imágenes, asegúrate de usar la ruta /storage/... en tu navegador.
+```
 
-Para detener los contenedores y limpiar:
+- If images are not visible, ensure you're using the `/storage/...` path in your browser.
 
-bash
-Copy
+## Stopping and Cleaning Up Containers
+
+```bash
 docker-compose down
-(agrega la opción -v para eliminar volúmenes y datos de la base de datos).
+```
+
+> Add the `-v` option to remove volumes and database data:
+
+```bash
+docker-compose down -v
