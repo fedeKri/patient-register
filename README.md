@@ -23,7 +23,34 @@ git clone <REPOSITORY_URL>
 cd patient-registration
 ```
 
-**Start the containers:**
+## Environment Configuration
+
+To set up your local environment, follow these steps:
+
+### 1. **Create your `.env` file**
+
+Copy the `.env.example` file provided in the repository:
+
+```bash
+cp .env.example .env
+```
+
+### 2. **Configure your `.env` file**
+
+Edit the newly created `.env` file to match your local setup, particularly the database connection details:
+
+```env
+DB_CONNECTION=pgsql
+DB_HOST=db
+DB_PORT=5432
+DB_DATABASE=patients_db
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+```
+
+You may also configure other settings (like email credentials or logging) if necessary.
+
+### 3. **Start the containers:**
 
 ```bash
 docker-compose up --build
